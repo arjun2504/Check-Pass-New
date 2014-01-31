@@ -1,5 +1,6 @@
 <?php
 	include_once "db.php";
+	error_reporting(0);
 	session_start();
 	$email = $_SESSION['email'];
 	$pid1 = $_SESSION['pid1'];
@@ -11,6 +12,9 @@
 	foreach($points as $i) {
 		$count++;
 	}
+	$_SESSION['p1'] = $points[0];
+	$_SESSION['p2'] = $points[1];
+	$_SESSION['p3'] = $points[2];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,12 +29,13 @@
     <title>Sign in verification : Step 1 of 2</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/sticky-footer.css" rel="stylesheet">
+	<meta http-equiv="refresh" content="3; accountinfo.php">
   </head>
 
   <body>
     <div id="wrap">
       <div class="container">
-	  <p class="navbar-text navbar-right">Signed in as <a class="navbar-link"><?php echo $email; ?></a> - <a class="navbar-link" href="logout.php">Log out</a></p>
+	  <p class="navbar-text navbar-right">Hi, <a class="navbar-link"><?php echo $email; ?></a> - <a class="navbar-link" href="logout.php">Log out</a></p>
         <div class="page-header">
 		<?php
 			if($count == 3 && $photoidx['p1'] == $points[0] && $photoidx['p2'] == $points[1] && $photoidx['p3'] == $points[2] && $pid1 == $photoidx['photoid1']) {
@@ -38,8 +43,13 @@
           <h1>You have successfully logged in.</h1>
         </div>
         <p class="lead">Login tests passed.</p>
-        <p>Beginning transaction...</p>
 		
+        <p>Loading your account...</p>
+		<div class="progress progress-striped active">
+  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
 		<?php } else { ?>
 		<h1>Login Failed!</h1>
         </div>

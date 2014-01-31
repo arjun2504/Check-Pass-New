@@ -36,14 +36,14 @@ $("input[type='checkbox']").on("mousedown", function () {
 </script>
   </head>
 
-  <body>
+  <body bgcolor="yellow">
   <?php
   	if($pid1[0] == $id) {
 	$_SESSION['pid1'] = $pid1[0];
   ?>
     <div id="wrap">
       <div class="container">
-	   <p class="navbar-text navbar-right">Signed in as <a class="navbar-link"><?php echo $email; ?></a> - <a class="navbar-link" href="logout.php">Log out</a></p>
+	   <p class="navbar-text navbar-right">Hi, <a class="navbar-link"><?php echo $email; ?></a> - <a class="navbar-link" href="logout.php">Log out</a></p>
         <div class="page-header">
           <h1>Please sign in</h1>
         </div>

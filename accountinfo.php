@@ -2,7 +2,10 @@
 	include_once "db.php";
 	session_start();
 	$email = $_SESSION['email'];
-	$photos = mysql_query("SELECT * FROM photos WHERE user_id = (SELECT id FROM users WHERE email = '$email')");
+	$pid1 = $_SESSION['pid1'];
+	$p1 = $_SESSION['p1'];
+	$p2 = $_SESSION['p2'];
+	$p3 = $_SESSION['p3'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,27 +23,32 @@
   </head>
 
   <body>
-  
     <div id="wrap">
       <div class="container">
 	  <p class="navbar-text navbar-right">Hi, <a class="navbar-link"><?php echo $email; ?></a> - <a class="navbar-link" href="logout.php">Log out</a></p>
         <div class="page-header">
-          
+		<?php
+			if(isset($p1) && isset($p3) && isset($p2) && isset($pid1) && isset($email)) {
+		?>
+          <h1>Your account details</h1>
         </div>
-        <p class="lead">Please choose the correct image to sign in.</p>
-        <p>Images below are arranged in random including our images. Pick your picture to sign in.</p>
-		
-			  <div class="row">
-<?php
-	while($pic = mysql_fetch_array($photos)) {
-?>
-  <div class="col-xs-6 col-md-3" style="width: 150px; height: 130px;">
-    <a href="<?php echo 'sstep.php?id='.$pic['id']; ?>" class="thumbnail">
-      <img src="<?php echo 'photos/'.$pic['filename']; ?>" alt="...">
-    </a>
-  </div>
- <?php } ?>
-</div>
+        
+		<?php
+			$q = mysql_fetch_array(mysql_query("SELECT * FROM accountinfo WHERE user_id = (SELECT id FROM users WHERE email = '$email') LIMIT 1"));
+		?>
+        <table class="table-condensed" width="600px">
+		<tr class="info">
+			<th>Account #</th>
+			<th>Balance</th>
+			<th>Date</th>
+		</tr>
+		<tr class="info">
+			<td><?php echo $q['accno']; ?></td>
+			<td><?php echo $q['balance']; ?></td>
+			<td><?php echo date("d-m-Y"); ?></td>
+		</tr>
+		</table>
+<?php } ?>
 		
 		
       </div>
