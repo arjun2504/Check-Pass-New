@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2014 at 02:24 PM
+-- Generation Time: Jan 31, 2014 at 11:26 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `face`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accountinfo`
+--
+
+CREATE TABLE IF NOT EXISTS `accountinfo` (
+  `accno` int(13) NOT NULL,
+  `user_id` int(13) NOT NULL,
+  `balance` int(11) DEFAULT NULL,
+  PRIMARY KEY (`accno`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accountinfo`
+--
+
+INSERT INTO `accountinfo` (`accno`, `user_id`, `balance`) VALUES
+(561, 1, 95000),
+(562, 2, 65000),
+(563, 3, 71000);
 
 -- --------------------------------------------------------
 
