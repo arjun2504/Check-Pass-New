@@ -1,4 +1,4 @@
-Learning
+CheckPass New
 ========
 CheckPass is a sample working prototype to show a new way of logging in an account or authorizing a task for an user.
 
